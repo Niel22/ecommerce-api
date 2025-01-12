@@ -1,21 +1,13 @@
-const models = require('../../models');
+const models = require("../../models");
 
-async function registerUser(userData)
-{
-    try{
+async function registerUser(userData) {
+  const user = await models.User.create(userData);
 
-        const user = await models.User.create(userData);
-        
-        if(user)
-            {
-                return true;
-            }
-            
-            return false;
-    }catch(error){
-        console.log(error.message);
-        return false;
-    }
+  if (user) {
+    return true;
+  }
+
+  return false;
 }
 
 module.exports = registerUser;
