@@ -25,11 +25,6 @@ const schema = {
     min: "10", 
     optional: false
   },
-  password: {
-    type: "string",
-    min: "8",
-    optional: false,
-  },
 };
 
 const v = new Validator();
@@ -40,7 +35,6 @@ async function validateInput(req, res, next) {
     lastName: req.body.lastName,
     email: req.body.email,
     mobile: req.body.mobile,
-    password: req.body.password
   };
 
   const validated = v.validate(data, schema);
@@ -55,7 +49,7 @@ async function validateInput(req, res, next) {
     },
   });
 
-  if (existingUser) {
+  if (existingUser && existingUser.id !== parseInt(req.params.id)) {
     return error(res, "User with this email already exist");
   }
 

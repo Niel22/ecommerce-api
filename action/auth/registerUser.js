@@ -1,6 +1,7 @@
 const models = require("../../models");
 
 async function registerUser(userData) {
+  
   const user = await models.User.create(userData);
 
   if (user) {
