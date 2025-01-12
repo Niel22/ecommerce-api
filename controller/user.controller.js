@@ -27,6 +27,7 @@ async function login(req, res)
 
 async function index(req, res)
 {
+  
   if(users = await fetchAllUser())
     {
     return success(res, userResource.collection(users));

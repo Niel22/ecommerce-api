@@ -10,7 +10,7 @@ async function loginUser(userData)
         }
     });
 
-    if(user && await user.comparePassword(userData.password))
+    if(await user?.comparePassword(userData.password))
     {
         const token = await jwt.generateWebToken(user);
         data = {

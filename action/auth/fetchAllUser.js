@@ -2,9 +2,8 @@ const models = require('../../models');
 
 async function fetchAllUsers()
 {
-    const users = models.User.findAll();
+    const users = await models.User.findAll();
 
-    console.log(users);
     if(users)
     {
         return users;

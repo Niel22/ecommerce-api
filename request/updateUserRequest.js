@@ -49,7 +49,7 @@ async function validateInput(req, res, next) {
     },
   });
 
-  if (existingUser && existingUser.id !== parseInt(req.params.id)) {
+  if (existingUser?.id !== parseInt(req.params.id)) {
     return error(res, "User with this email already exist");
   }
 

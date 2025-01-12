@@ -5,7 +5,6 @@ async function generateWebToken(user)
     return await jwt.sign(
         {
             userId: user.id,
-            email: user.email
         }, 
         process.env.JWT_KEY,
         { expiresIn: "3d"}
