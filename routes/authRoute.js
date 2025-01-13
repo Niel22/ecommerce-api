@@ -15,5 +15,9 @@ router.post('/register', asyncHandler(registerRequest.validateInput), asyncHandl
 router.post('/login', asyncHandler(loginRequest.validateInput), asyncHandler(userController.login));
 router.put('/:id', asyncHandler(authMiddleware), asyncHandler(manageUser), asyncHandler(updateUserequest.validateInput), asyncHandler(userController.update));
 router.delete('/:id', asyncHandler(authMiddleware),  asyncHandler(isAdmin), asyncHandler(userController.destroy));
+router.put('/block/:id', asyncHandler(authMiddleware), asyncHandler(isAdmin), asyncHandler(userController.block));
+router.put('/unblock/:id', asyncHandler(authMiddleware), asyncHandler(isAdmin), asyncHandler(userController.unblock));
+router.post('/refresh', asyncHandler(userController.handleRefreshToken));
+router.get('/logout', asyncHandler(authMiddleware), asyncHandler(userController.logout));
 
 module.exports = router;

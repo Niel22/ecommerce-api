@@ -26,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     mobile: DataTypes.STRING,
     password: DataTypes.STRING,
     role: DataTypes.STRING,
+    isBlocked: DataTypes.BOOLEAN,
+    refreshToken: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',

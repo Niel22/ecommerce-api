@@ -21,8 +21,12 @@ async function authMiddleware(req, res, next)
         req.userData = user;
 
         next();
-
+        return;
     }
+
+    return error(res, "Unauthenticated");
+
+
 }
 
 module.exports = authMiddleware;

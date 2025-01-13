@@ -6,7 +6,8 @@ function resource(user)
         lastName: user.lastName,
         email: user.email,
         phone_no: user.mobile,
-        role: user.role
+        role: user.role,
+        blocked: user.isBlocked ? true : false
     }
 }
 
