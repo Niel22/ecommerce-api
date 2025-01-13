@@ -4,8 +4,8 @@ const asyncHandler = require('express-async-handler');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const { register, login, handleRefreshToken, logout } = require('../controller/auth.controller');
-const registerRequest = require('../request/registerRequest');
-const loginRequest = require('../request/loginRequest');
+const registerRequest = require('../request/user/registerRequest');
+const loginRequest = require('../request/user/loginRequest');
 
 
 router.post('/register', asyncHandler(registerRequest), asyncHandler(register));

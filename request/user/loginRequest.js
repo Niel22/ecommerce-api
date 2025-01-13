@@ -1,5 +1,5 @@
 const Validator = require('fastest-validator');
-const { validationError } = require('../utils/apiResponse');
+const { validationError } = require('../../utils/apiResponse');
 
 const schema = {
     email: {

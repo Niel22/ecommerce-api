@@ -18,10 +18,14 @@ async function authMiddleware(req, res, next)
         
         const user = await models.User.findByPk(decoded?.userId);
 
-        req.userData = user;
+        if(user.refreshToken !== null){
 
-        next();
-        return;
+            
+            req.userData = user;
+            
+            next();
+            return;
+        }
     }
 
     return error(res, "Unauthenticated");

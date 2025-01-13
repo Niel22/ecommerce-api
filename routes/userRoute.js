@@ -3,7 +3,7 @@ const router = express.Router();
 const asyncHandler = require('express-async-handler');
 const authMiddleware = require('../middlewares/authMiddleware');
 
-const updateUserequest = require('../request/updateUserRequest');
+const updateUserequest = require('../request/user/updateUserRequest');
 const { index, show, update, destroy, block, unblock } = require('../controller/user.controller');
 const isAdmin = require('../middlewares/isAdmin');
 const manageUser = require('../permission/manageUser');

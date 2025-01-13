@@ -18,7 +18,7 @@ async function logoutUser(cookies) {
     return false;
   }
 
-  const result = await models.User.update({refreshToken: ""}, {where: {refreshToken: cookie.refreshToken}});
+  const result = await models.User.update({refreshToken: null}, {where: {refreshToken: cookie.refreshToken}});
   if(result)
   {
     return true;

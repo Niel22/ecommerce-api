@@ -1,9 +1,9 @@
 const Validator = require("fastest-validator");
-const models = require("../models");
+const models = require("../../models");
 const {
   error,
   validationError,
-} = require("../utils/apiResponse");
+} = require("../../utils/apiResponse");
 
 const schema = {
   firstName: {
