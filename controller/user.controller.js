@@ -1,38 +1,11 @@
-const registerUser = require("../action/auth/registerUser");
-const loginUser = require("../action/auth/loginUser");
-const fetchAllUser = require('../action/auth/fetchAllUser');
-const fetchSingleUser = require('../action/auth/fetchSingleUser');
-const deleteUser = require('../action/auth/deleteUser');
-const updateUser = require('../action/auth/updateUser');
-const { success, error } = require("../utils/apiResponse");
+const fetchAllUser = require('../action/user/fetchAllUser');
+const fetchSingleUser = require('../action/user/fetchSingleUser');
+const deleteUser = require('../action/user/deleteUser');
+const updateUser = require('../action/user/updateUser');
 const userResource = require('../resource/userResource');
-const blockUser = require("../action/auth/blockUser");
-const unblockUser = require("../action/auth/unblockUser");
-const refreshToken = require("../action/auth/refreshToken");
-const logoutUser = require("../action/auth/logoutUser");
-async function register(req, res) 
-{
-  if (await registerUser(req.userData)) {
-    return success(res, {}, "User Created");
-  }
-
-  return error(res, "User cannot be created");
-}
-
-async function login(req, res)
-{
-  if(user = await loginUser(req.userData))
-  {
-    res.cookie('refreshToken', user.refreshToken, {
-      httpOnly: true,
-      maxAge: 72*60*60*1000
-    });
-
-    return success(res, user, "User logged in");
-  }
-
-  return error(res, "Innvalid credentials");
-}
+const blockUser = require("../action/user/blockUser");
+const unblockUser = require("../action/user/unblockUser");
+const { success, error } = require("../utils/apiResponse");
 
 async function index(req, res)
 {
@@ -95,47 +68,11 @@ async function unblock(req, res)
   return error(res, 'Cannot unblock user');
 }
 
-async function handleRefreshToken(req, res)
-{
-  if(accessToken = await refreshToken(req.cookies))
-  {
-    return success(res, {accessToken: accessToken});
-  }
-
-  return error("Error Occured");
-}
-
-async function logout(req, res)
-{
-  console.log("Processing");
-  if(await logoutUser(req.cookies))
-  {
-    res.clearCookie('refreshToken', {
-
-      httpOnly: true,
-      secure: true
-    });
-    
-    return success(res, "User logged out");
-  }
-  res.clearCookie('refreshToken', {
-
-    httpOnly: true,
-    secure: true
-  });
-  return error(res, "Cannot log out");
-
-}
-
 module.exports = {
-  register,
-  login,
-  index,
-  show,
-  update,
-  destroy,
-  block,
-  unblock,
-  handleRefreshToken,
-  logout
-};
+    index,
+    show,
+    update,
+    destroy,
+    block,
+    unblock,
+  };

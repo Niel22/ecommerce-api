@@ -14,7 +14,7 @@ const schema = {
 
 const v = new Validator();
 
-async function validateInput(req, res, next)
+async function loginRequest(req, res, next)
 {
     const data = {
         email: req.body.email,
@@ -32,6 +32,4 @@ async function validateInput(req, res, next)
     next();
 }
 
-module.exports = {
-    validateInput
-}
+module.exports = loginRequest;

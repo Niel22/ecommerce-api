@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 const authRoute = require('./routes/authRoute');
+const userRoute = require('./routes/userRoute');
 const cookieParser = require('cookie-parser');
 const { notFound, errorHandler } = require('./middlewares/errorHandler');
 dotenv.config();
@@ -13,7 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-app.use('/api/user', authRoute);
+app.use('/api/auth', authRoute);
+app.use('/api/user', userRoute);
 app.use(notFound);
 app.use(errorHandler);
 

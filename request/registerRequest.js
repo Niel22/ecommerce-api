@@ -34,7 +34,7 @@ const schema = {
 
 const v = new Validator();
 
-async function validateInput(req, res, next) {
+async function registerRequest(req, res, next) {
   const data = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -63,4 +63,4 @@ async function validateInput(req, res, next) {
   next();
 }
 
-module.exports = { validateInput };
+module.exports = registerRequest;
