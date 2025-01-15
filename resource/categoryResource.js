@@ -1,9 +1,10 @@
 function categoryResource(category)
 {
     return {
+        id: category.id,
         title: category.title,
         slug: category.slug,
-        description: category.description
+        description: category.description,
     }
 }
 

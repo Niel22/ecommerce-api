@@ -1,4 +1,5 @@
 const slugify = require('slugify');
+
 'use strict';
 const {
   Model
@@ -21,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Category',
+    timestamps: true,
     hooks: {
       beforeCreate: async (category) => {
         category.slug = slugify(category.title, {lower: true, strict: true});

@@ -1,3 +1,6 @@
+const slugify = require('slugify');
+const models = require('../models');
+
 'use strict';
 const {
   Model
@@ -10,7 +13,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.Category, {
+        foreignKey: 'categoryId',
+        as: 'category'
+      });
+
+      this.belongsTo(models.User, {
+        foreignKey: 'postedBy',
+        as: 'user'
+      });
     }
   }
   Product.init({
@@ -28,7 +39,18 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Product',
-    timestamps: true
+    timestamps: true,
+    hooks: {
+      beforeCreate: async(product) => {
+        product.slug = slugify(product.title, {lower: true, strict: true});
+      },
+      beforeUpdate: async(product) => {
+        if(product.changed('title')){
+
+          product.slug = slugify(product.title, {lower: true, strict: true});
+        }
+      }
+    }
   });
   return Product;
 };

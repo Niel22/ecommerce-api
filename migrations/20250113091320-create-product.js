@@ -43,17 +43,9 @@ module.exports = {
         type: Sequelize.ENUM('Black', 'Red'),
         allowNull: false
       },
-      ratings: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-        allowNull: true
-      },
       brand: {
-        type: Sequelize.ENUM('Apple', 'Samsung', 'Lenovo', ),
-      },
-      sold: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0
+        type: Sequelize.ENUM('Apple', 'Samsung', 'Lenovo'),
+        allowNull: false
       },
       postedBy: {
         type: Sequelize.INTEGER,
@@ -61,6 +53,14 @@ module.exports = {
           model: 'Users',
           key: 'id'
         }
+      },
+      sold: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      ratings: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       createdAt: {
         allowNull: false,

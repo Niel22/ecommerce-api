@@ -22,6 +22,7 @@ async function authMiddleware(req, res, next)
 
             
             req.userData = user;
+            // console.log(req.userData.id);
             
             next();
             return;
