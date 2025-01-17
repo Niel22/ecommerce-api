@@ -1,8 +1,10 @@
 const models = require('../../models');
 
-async function fetchAllProduct(){
+async function fetchAllProduct(page = 1, pageSize = 10){
 
-    const product = await models.Product.findAll({
+    const offset = (page -1) * pageSize;
+    const limit = pageSize;  
+    const { rows: product, count: total } = await models.Product.findAndCountAll({
         include: [
             {
                 model: models.Category,
@@ -12,12 +14,20 @@ async function fetchAllProduct(){
                 model: models.User,
                 as: 'user'
             }
-        ]
+        ],
+        limit, offset
     });
+    console.log(product);
 
-    if(product.length > 0)
+    if(total > 0)
     {
-        return product;
+        return {
+            product,
+            total,
+            currentPage: page,
+            totalPages: Math.ceil(total/pageSize),
+            pageSize: pageSize
+        };
     }
 
     return false;

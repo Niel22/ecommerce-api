@@ -14,7 +14,16 @@ function productResource(product)
 
 function productCollection(products)
 {
-    return products.map(product => productResource(product));
+    return {
+        data: products.product.map(product => productResource(product)),
+        meta: {
+            total: products.total,
+            currentPage: products.currentPage,
+            totalPages: products.totalPages,
+            pageSize: products.pageSize
+
+        }
+    };
 }
 
 module.exports = {
