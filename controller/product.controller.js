@@ -8,7 +8,7 @@ const {productCollection, productResource} = require('../resource/productResourc
 
 async function index(req, res)
 {
-    if(product = await fetchAllProduct())
+    if(product = await fetchAllProduct(req.query.page, req.query.pageSize))
     {
         return success(res, new productCollection(product));
     }

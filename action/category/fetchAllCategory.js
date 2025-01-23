@@ -1,12 +1,21 @@
 const models = require('../../models');
 
-async function fetchAllCategory()
+async function fetchAllCategory(page = 1, pageSize = 10)
 {
-    const category = await models.Category.findAll();
+    offset = (page -1) * pageSize;
+    limit = pageSize;
+
+    const { rows: category, count: total} = await models.Category.findAndCountAll();
     
-    if(category.length !== 0)
+    if(total > 0)
     {
-        return category;
+        return {
+            category,
+            total,
+            currentPage: page,
+            totalPages: Math.ceil(total/pageSize),
+            pageSize: pageSize
+        };
     }
 
     return false;

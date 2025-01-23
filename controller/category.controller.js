@@ -7,7 +7,7 @@ const { categoryCollection, categoryResource } = require('../resource/categoryRe
 const deleteCategory = require("../action/category/deleteCategory");
 
 async function index(req, res) {
-  if ((category = await fetchAllCategory())) {
+  if ((category = await fetchAllCategory(req.query.page, req.query.pageSize))) {
 
     return success(res, categoryCollection(category));
   }

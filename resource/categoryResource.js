@@ -10,7 +10,15 @@ function categoryResource(category)
 
 function categoryCollection(categories)
 {
-    return categories.map(category => categoryResource(category));
+    return {
+        data: categories.category.map(category => categoryResource(category)),
+        meta: {
+            total: categories.total,
+            currentPage: categories.currentPage,
+            totalPages: categories.totalPages,
+            pageSize: categories.pageSize
+        }
+    };
 }
 
 module.exports = {
