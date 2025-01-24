@@ -63,6 +63,11 @@ async function createProductRequest(req, res, next)
         return validationError(res, validated);
     }
 
+    if(!req.headers['content-type']?.includes('multipart/form-data'))
+    {
+        return error(res, 'Image is required');
+    }
+
     const category = await models.Category.findByPk(data.categoryId);
 
     if(!category)

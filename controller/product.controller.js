@@ -28,6 +28,8 @@ async function show(req, res)
 
 async function store(req, res)
 {
+    req.data.image = req.file.filename;
+    
     if(await createProduct(req.data))
     {
         return success(res, {}, "Product Created");
