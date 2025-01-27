@@ -14,17 +14,17 @@ const schema = {
         min: 10
     },
     price: {
-        type: "number",
+        type: "string",
         optional: false,
         min: 1
     },
     categoryId: {
-        type: "number",
+        type: "string",
         optional: false,
         min: 1
     },
     quantity: {
-        type: "number",
+        type: "string",
         optional: false,
         min: 1
     },
@@ -61,11 +61,6 @@ async function createProductRequest(req, res, next)
     if(validated !== true)
     {
         return validationError(res, validated);
-    }
-
-    if(!req.headers['content-type']?.includes('multipart/form-data'))
-    {
-        return error(res, 'Image is required');
     }
 
     const category = await models.Category.findByPk(data.categoryId);

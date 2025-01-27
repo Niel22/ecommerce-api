@@ -2,16 +2,16 @@ const multer = require('multer');
 const path = require('path');
 
 const storage = multer.diskStorage({
-    destination: (req, res, cb) => {
+    destination: (req, file, cb) => {
         cb(null, './uploads');
     },
-    filename: (req, res, cb) => {
-        cb(null, Date.now() + path.extname(file.originalName));
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
-const fileFilter = (req, res, cb) => {
-    if(file.mimetype === 'images/jpeg' || file.mimetype === 'images/jpg' || file.mimetype === 'images/png')
+const fileFilter = (req, file, cb) => {
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png')
     {
         cb(null, true);
     }else{

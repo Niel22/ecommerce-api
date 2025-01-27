@@ -1,3 +1,5 @@
+const link = require("../utils/paginationLink");
+
 function productResource(product)
 {
     return {
@@ -22,7 +24,8 @@ function productCollection(products)
             totalPages: products.totalPages,
             pageSize: products.pageSize
 
-        }
+        },
+        links: link('product', products.currentPage, products.totalPages)
     };
 }
 

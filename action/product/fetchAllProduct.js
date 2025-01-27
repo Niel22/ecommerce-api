@@ -1,6 +1,6 @@
 const models = require('../../models');
 
-async function fetchAllProduct(page = 1, pageSize = 2){
+async function fetchAllProduct(page = 1, pageSize = 1){
 
     const offset = (page -1) * pageSize;
     const limit = pageSize;  

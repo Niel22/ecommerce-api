@@ -13,7 +13,7 @@ router.use(asyncHandler(authMiddleware));
 router.get('', asyncHandler(index));
 router.get('/:id', asyncHandler(show));
 
-router.post('', asyncHandler(createProductRequest), upload.single('image'), asyncHandler(store));
+router.post('', upload.single('image'), asyncHandler(createProductRequest), asyncHandler(store));
 router.put('/:id', asyncHandler(updateProductRequest), asyncHandler(update));
 router.delete('/:id', asyncHandler(destroy));
 

@@ -10,6 +10,7 @@ async function index(req, res)
 {
     if(product = await fetchAllProduct(req.query.page, req.query.pageSize))
     {
+        console.log(req.url);
         return success(res, new productCollection(product));
     }
 
