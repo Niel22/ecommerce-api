@@ -10,7 +10,7 @@ const { notFound, errorHandler } = require('./middlewares/errorHandler');
 const BodyParser = require('./middlewares/bodyParser');
 dotenv.config();
 
-const port = process.env.PORT;
+const port = process.env.APP_PORT;
 
 BodyParser.init(app);
 app.use(cookieParser());
